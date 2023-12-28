@@ -38,6 +38,7 @@ _________________
     对来询问的用户 服务： 可以一个客服对应多个用户，优先分配在线的客服，会话没有结束前，还是由之前的客服人员继续服务
 ![RUNOOB 图标](https://github.com/RobotJohns/Assets/blob/main/service2.gif?raw=true)
 
+### .gif 文件大小有限制不能太长，这个有录个视频[视频展示](https://github.com/RobotJohns/Assets/blob/main/2023-12-28-16-03-56.mp4)  
 
 
 # 运行项目：
