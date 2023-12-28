@@ -1,6 +1,9 @@
 # ServiceSystem 客服系统
     客服系统可以实现用户和公司的高效沟通，市面上成熟的商用客服系统。 按坐席分 单个坐席动辄几千块。业务也比较冗余（功能多），前段时间公司需要一个客服系统。决定纯手鲁一个：
 
+# 邮箱基本不怎么看:aneglporthome@gmail.com
+# 有问题沟通:[个人主页](https://blog.csdn.net/nicepainkiller)  
+
 # 项目目录：
 ```javascript
 imConsole   客服端      Vue2 + ElementUI
@@ -50,3 +53,25 @@ _________________
 [MidWay](https://midwayjs.org/docs/extensions/redis)
 ![RUNOOB 图标](https://github.com/RobotJohns/Assets/blob/main/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20231228173700.png?raw=true)
 
+## 启动的时候你那边应该没有 管理员账号数据: 可以把鉴权信息移除掉或者再 redis[1] 里面直接加入管理员，用户注册 客服人员
+
+#### 创建用户API接口 鉴权移除掉
+![RUNOOB 图标](https://github.com/RobotJohns/Assets/blob/main/service_3.png?raw=true)
+```
+//鉴权移除掉
+@Post('/register')
+async register(@Body('accountName') accountName: string, @Body('nickName') nickName: string, @Body('password') password: string): Promise<ResponseBase> {
+    if (accountName && password && nickName) {
+        return this.serviceAccount.register(accountName, nickName, password);
+    } else {
+        return new ResponseError({ message: '参数有误', code: -1, content: null });
+    }
+}
+```
+
+#### 创建用户 Service 接口 用户类型改成 9 管理员 然后你就能创建 客服人员了
+![RUNOOB 图标](https://github.com/RobotJohns/Assets/blob/main/service_4.png?raw=true)
+
+
+
+##### 这些你跑起来应该问题不大了吧

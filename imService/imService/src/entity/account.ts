@@ -51,6 +51,17 @@ export class AccountService {
     */
     public lastTime: string;
 
+    /**
+     * 
+     * @param account 
+     * @param nickName 
+     * @param password 
+     * @param avatar 
+     * @param state 
+     * @param type 账号类型 管理员9，普通1
+     * @param token 
+     * @param online 
+     */
     constructor(account: string, nickName: string, password: string, avatar: string, state: string, type: string, token: string,online:boolean) {
         this.account = account;
         this.nickName = nickName;
