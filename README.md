@@ -2,7 +2,7 @@
     客服系统可以实现用户和公司的高效沟通，市面上成熟的商用客服系统。 按坐席分 单个坐席动辄几千块。业务也比较冗余（功能多），前段时间公司需要一个客服系统。决定纯手鲁一个：
 
 # 邮箱基本不怎么看:aneglporthome@gmail.com
-# 有问题沟通:[个人主页](https://blog.csdn.net/nicepainkiller/article/details/135284387)  
+# 有问题可以留言沟通:[个人主页](https://blog.csdn.net/nicepainkiller/article/details/135284387)  
 
 # 项目目录：
 ```javascript
