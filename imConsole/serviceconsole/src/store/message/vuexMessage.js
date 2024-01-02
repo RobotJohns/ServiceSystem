@@ -79,7 +79,9 @@ export default {
     },
 
     /**
-     * 来自会话的  消息（自己的+用户的）
+     * 来自会话的  消息（自己的+用户的），这里包含 实时消息和历史消息，
+     * 客服打开 会话的时候会请求历史消息，在这之前如果 有实时消息 则会出现重复的情况； 
+     * 这里需要做 处理
      * @param {*} state 
      * @param {*} messages 
      */
@@ -89,7 +91,23 @@ export default {
         return ele['conversationID'] == conversationID
       })
       if (index > -1) {
-        state.chatMessageArray[index].messageArray = state.chatMessageArray[index].messageArray.concat(messages['messages'])
+        let messageArray = state.chatMessageArray[index].messageArray.concat(messages['messages'])
+        //去重处理，以毫秒时间戳
+        // const uniqueArray = messages.filter((obj, index, self) =>
+        //   index === self.findIndex((o) =>
+        //     o.id === obj.id && o.name === obj.name
+        //   )
+        // );
+        // state.chatMessageArray[index].messageArray = messages
+        messageArray = messageArray.filter((obj, index, self) =>
+          index === self.findIndex((o) =>
+            // o.id === obj.id && o.name === obj.name
+            o.time == obj.time
+          )
+        );
+        messageArray.sort((a, b) => a.time - b.time);
+        state.chatMessageArray[index].messageArray = messageArray
+
       } else {
         state.chatMessageArray.push({
           conversationID: conversationID,

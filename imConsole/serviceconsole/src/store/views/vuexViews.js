@@ -75,6 +75,8 @@ export default {
           let nextTab = state.chatContentArray[index - 1] || state.chatContentArray[index] || state.chatContentArray[index + 1];
           if (nextTab) {
             state.chatConversationID = nextTab.userID
+          }else{
+            state.chatConversationID = '';
           }
         }
       } else {

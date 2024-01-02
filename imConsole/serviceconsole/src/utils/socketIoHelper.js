@@ -73,6 +73,7 @@ export default {
       //store.commit("message/updateConversationOne", data);
     });
 
+    ///历史消息
     socket.on(EventOn.messageToServiceHistory, (data) => {
       store.commit("message/updateChatMessageArray", data);
     })

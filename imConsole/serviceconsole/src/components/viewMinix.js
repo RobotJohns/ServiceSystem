@@ -57,7 +57,9 @@ export const ViewMixin = {
       }
     },
     time() {
-      if (this.index == 1) {
+      ///因为用户端展示机器人和提示消息 服务端没有战士，这里过滤掉 第一条要不然会有索引问题，
+      ///当然也可以直接把消息数组处理下，这里采取上面的方式
+      if (this.index <= 1) {
         return this.$moment(this.chatMessage.time).format('LLL');
       } else {
         //console.warn('this.chatMessageArray:', this.chatMessageArray)
