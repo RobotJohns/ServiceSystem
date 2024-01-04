@@ -1,6 +1,6 @@
 <template>
 	<view class="preview-video">
-		<video :src="url"></video>
+		<video :src="url" :poster="poster"></video>
 		<img src="../../static/round_close.png" @click="onClose()" alt="">
 	</view>
 </template>
@@ -9,12 +9,16 @@
 	export default {
 		data() {
 			return {
-				url: ''
+				url: '',
+				poster: '',
 			}
 		},
 		onLoad: function(option) {
-			if (option && option.url) {
-				this.url = option.url
+			if (option) {
+				// console.log(decodeURIComponent(option.cover))
+				// console.log(decodeURIComponent(option.src))
+				this.url = decodeURIComponent(option.src)
+				this.poster = decodeURIComponent(option.cover)
 			} else {
 				console.error('video url invalid')
 				uni.navigateBack()

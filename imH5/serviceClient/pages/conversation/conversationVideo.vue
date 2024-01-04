@@ -20,7 +20,7 @@
 		methods: {
 			onPreview() {
 				uni.navigateTo({
-					url: `/pages/conversation/conversationPreviewVideo?url=${this.chatMessage.content.src}`
+					url: `/pages/conversation/conversationPreviewVideo?cover=${encodeURIComponent(this.chatMessage.content.cover)}&src=${encodeURIComponent(this.chatMessage.content.src)}`
 				})
 			}
 		}

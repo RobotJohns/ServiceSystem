@@ -40,7 +40,14 @@ export default new Vuex.Store({
 			state.chatMessageArray = [];
 		},
 		updateChatMessageArray(state, value) {
-			state.chatMessageArray = state.chatMessageArray.concat(value)
+			let messageArray = state.chatMessageArray = state.chatMessageArray.concat(value)
+			messageArray = messageArray.filter((obj, index, self) =>
+				index === self.findIndex((o) =>
+					o.time == obj.time && o.fromService == obj.fromService && o.msgType == obj.msgType
+				)
+			);
+			messageArray.sort((a, b) => a.time - b.time);
+			state.chatMessageArray = messageArray
 			//通知页面滚动到底部了
 			EventBus.$emit(EventView.newMessage);
 		}

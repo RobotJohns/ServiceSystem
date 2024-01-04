@@ -167,7 +167,7 @@ export class SocketClient {
         for (let i = 0; i < keyArray.length; i++) {
             const accountStr = await this.redisService.get(keyArray[i]);
             const accountService: AccountService = JSON.parse(accountStr);
-            if (accountService.state == '1' && accountService.online) {
+            if (accountService.state == '1' && accountService.type == '1' && accountService.online) {
                 accountArray.push({
                     account: accountService.account,
                     nickName: accountService.nickName,
@@ -183,7 +183,7 @@ export class SocketClient {
             for (let i = 0; i < keyArray.length; i++) {
                 const accountStr = await this.redisService.get(keyArray[i]);
                 const accountService: AccountService = JSON.parse(accountStr);
-                if (accountService.state == '1') {
+                if (accountService.state == '1' && accountService.type == '1') {
                     accountArray.push({
                         account: accountService.account,
                         nickName: accountService.nickName,

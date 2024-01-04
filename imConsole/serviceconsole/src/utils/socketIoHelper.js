@@ -18,7 +18,8 @@ export default {
     }
 
     socket = io(config.hostSocket, {
-      transports: ['websocket'],
+      transports: ['websocket', 'polling'],
+      withCredentials: true,
       auth: {
         "identification": 'service',
         "account": store.state.core.userInfo.account,
@@ -35,8 +36,8 @@ export default {
     socket.on('error', () => {
       console.log('error')
     });
-    socket.on('connect_error', () => {
-      console.log('connect_error')
+    socket.on('connect_error', (err) => {
+      console.log('connect_error:',err)
     });
     socket.on('reconnecting', () => {
       console.log('reconnecting')

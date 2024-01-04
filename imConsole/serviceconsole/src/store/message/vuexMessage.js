@@ -102,7 +102,7 @@ export default {
         messageArray = messageArray.filter((obj, index, self) =>
           index === self.findIndex((o) =>
             // o.id === obj.id && o.name === obj.name
-            o.time == obj.time
+            o.time == obj.time && o.fromService == obj.fromService && o.msgType == obj.msgType
           )
         );
         messageArray.sort((a, b) => a.time - b.time);

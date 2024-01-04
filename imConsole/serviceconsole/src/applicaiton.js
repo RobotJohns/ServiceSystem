@@ -16,8 +16,8 @@ export default {
     await store.dispatch('core/loadStorage');
 
 
-    console.log('vue new Date():', new Date().toString())
-    console.log('vue new Date():', new Date().getHours())
+    //console.log('vue new Date():', new Date().toString())
+    //console.log('vue new Date():', new Date().getHours())
 
     Vue.prototype.$echarts = echarts;
     Vue.use(echarts)

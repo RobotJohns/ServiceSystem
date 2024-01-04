@@ -104,7 +104,7 @@ export default {
       }
     },
     onSuccess(res) {
-      console.log("onSuccess", res);
+      //console.log("onSuccess", res);
       const suffixArray = [".jpg", ".jpeg", ".png", ".mp4"];
       if (res.success) {
         console.log(res.content);
