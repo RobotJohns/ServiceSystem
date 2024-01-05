@@ -3,10 +3,13 @@
 		<view class="wrap-time" v-if="time">{{time}}</view>
 		<view class="chat-video" :class="{ 'chat-self': !chatMessage.fromService }">
 			<img class="char-avatar" :src="avatar" />
-			<div class="video-box" @click="onPreview()">
-				<img class="video-cover" :src="chatMessage.content.cover" fit="cover"></img>
-				<img class="video-play" src="../../static/play.png" />
-			</div>
+			<view class="char-content-warp">
+				<view class="char-name" v-if='chatMessage.fromService'>{{ serviceInfo.nickName }}</view>
+				<view class="video-box" @click="onPreview()">
+					<img class="video-cover" :src="chatMessage.content.cover" fit="cover"></img>
+					<img class="video-play" src="../../static/play.png" />
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -57,32 +60,51 @@
 				border-radius: 50%;
 			}
 
-			.video-box {
-				position: relative;
+			.char-content-warp {
+				max-width: 60%;
+				margin-left: 20rpx;
+				display: flex;
+				flex-direction: column;
+				justify-content: start;
 
-				.video-cover {
-					margin-left: 20rpx;
-					border-radius: 12rpx;
-					min-width: 150rpx;
-					min-height: 150rpx;
-					max-width: 220rpx;
-					max-height: 400rpx;
-					object-fit: cover;
+				.char-name {
+					align-self: flex-start;
+					font-size: 24rpx;
+					border-radius: 5rpx;
+					color: #222;
+					// background-color: #ccc;
+					padding: 3rpx 4rpx;
+					margin-bottom: 10rpx;
 				}
 
-				.video-play {
-					position: absolute;
-					width: 90rpx;
-					height: 90rpx;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
+				.video-box {
+					position: relative;
+
+					.video-cover {
+
+						border-radius: 12rpx;
+						min-width: 150rpx;
+						min-height: 150rpx;
+						max-width: 220rpx;
+						max-height: 400rpx;
+						object-fit: cover;
+					}
+
+					.video-play {
+						position: absolute;
+						width: 90rpx;
+						height: 90rpx;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+					}
 				}
 			}
 		}
 
 		.chat-self {
 			flex-direction: row-reverse;
+
 			.char-avatar {
 				margin-right: 15px;
 			}

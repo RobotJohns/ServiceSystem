@@ -3,7 +3,10 @@
 		<view class="wrap-time" v-if="time">{{time}}</view>
 		<view class="chat-image" :class="{ 'chat-self': !chatMessage.fromService }">
 			<img class="char-avatar" :src="avatar" />
-			<img class="char-image" :src="chatMessage.content" @click="onPreview()" />
+			<view class="char-content-warp">
+				<view class="char-name" v-if='chatMessage.fromService'>{{ serviceInfo.nickName }}</view>
+				<img class="char-image" :src="chatMessage.content" @click="onPreview()" />
+			</view>
 		</view>
 	</view>
 </template>
@@ -54,21 +57,38 @@
 				border-radius: 50%;
 			}
 
-			.char-image {
+			.char-content-warp {
+				max-width: 60%;
 				margin-left: 20rpx;
-				border-radius: 12rpx;
-				min-width: 80rpx;
-				min-height: 80rpx;
-				max-width: 200rpx;
-				max-height: 400rpx;
-				object-fit: contain;
+				display: flex;
+				flex-direction: column;
+				justify-content: start;
+
+				.char-name {
+					align-self: flex-start;
+					font-size: 24rpx;
+					border-radius: 5rpx;
+					color: #222;
+					// background-color: #ccc;
+					padding: 3rpx 4rpx;
+					margin-bottom: 10rpx;
+				}
+
+				.char-image {
+
+					border-radius: 12rpx;
+					min-width: 80rpx;
+					min-height: 80rpx;
+					max-width: 200rpx;
+					max-height: 400rpx;
+					object-fit: contain;
+				}
 			}
 		}
 
 		.chat-self {
 			flex-direction: row-reverse;
 			// margin-left: 100rpx;
-
 			.char-avatar {
 				margin-right: 30rpx;
 			}

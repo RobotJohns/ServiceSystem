@@ -1,9 +1,12 @@
 <template>
 	<view class="chat-wrap">
 		<view class="wrap-time" v-if="time">{{time}}</view>
-		<view class="chat-char" :class="{ 'chat-self': !chatMessage.fromService }">
+		<view class="chat-char" :class="{'chat-self':!chatMessage.fromService }">
 			<img :src="avatar" />
-			<div class="char-content">{{ chatMessage.content }}</div>
+			<view class="char-content-warp">
+				<view class="char-name" v-if='chatMessage.fromService'>{{ serviceInfo.nickName }}</view>
+				<view class="char-content">{{ chatMessage.content }}</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -42,7 +45,6 @@
 			align-items: flex-start;
 
 			// background-color: brown;
-
 			img {
 				margin-left: 24rpx;
 				width: 80rpx;
@@ -50,26 +52,43 @@
 				border-radius: 50%;
 			}
 
-			.char-content {
-				margin-left: 20rpx;
-				padding: 20rpx;
-				background: white;
-				border-radius: 10rpx;
+			.char-content-warp {
 				max-width: 60%;
-				text-align: left;
+				margin-left: 20rpx;
+				display: flex;
+				flex-direction: column;
+				justify-content: start;
+
+				.char-name {
+					align-self: flex-start;
+					font-size: 24rpx;
+					border-radius: 5rpx;
+					color: #222;
+					// background-color: #ccc;
+					padding: 3rpx 4rpx;
+					margin-bottom: 10rpx;
+				}
+
+				.char-content {
+					align-self: flex-start;
+					padding: 12rpx 16rpx;
+					background: white;
+					border-radius: 10rpx;
+					text-align: left;
+				}
 			}
 		}
 
 		.chat-self {
 			flex-direction: row-reverse;
-
 			img {
 				margin-right: 30rpx;
 			}
-
-			.char-content {
-				// text-align: right;
-				background: #75df62;
+			.char-content-warp {
+				.char-content {
+					// text-align: right;
+					background: #75df62;
+				}
 			}
 		}
 	}
